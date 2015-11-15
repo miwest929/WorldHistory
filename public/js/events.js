@@ -5,6 +5,7 @@ $("#search").click(function() {
   $.ajax({
     type: "GET",
     url: 'http://localhost:3000/api/events?query=' + queryStr,
+    contentType: 'application/x-www-form-urlencoded',
     error: function(xhr, statusText) {
       console.log("Error: " + statusText);
     },

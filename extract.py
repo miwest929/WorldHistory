@@ -20,7 +20,7 @@ db = pg_driver.connect(
 
 def createTables(db):
   db.execute("DROP TABLE IF EXISTS timelines;")
-  db.execute("CREATE TABLE timelines (event_date VARCHAR(64), id INTEGER, event_description VARCHAR(1024));")
+  db.execute("CREATE TABLE timelines (event_date VARCHAR(64), id INTEGER, event_description VARCHAR(2048));")
 
 # If date represents an invalid date then None is returned
 def getDateKey(date):

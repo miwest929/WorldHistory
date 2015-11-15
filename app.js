@@ -33,10 +33,10 @@ var dbUrl = "postgres://postgres:postgres@localhost/worldhistory";
 
 app.get('/api/events', function(request, response) {
   var query = request.query.query;
-
+  console.log("---------------- QUERY: " + query);
   searchClient.search({
-    q: query,
-    sort: 'date',
+    q: query
+//    sort: 'date',
   }).then(function (body) {
     var hits = body.hits.hits;
     var results = body.hits.hits.map(function(result) {
