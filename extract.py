@@ -80,6 +80,8 @@ for y in range(1700, 1900):
   parseYearWiki(str(y), timeline)
 
 print("Persisting events to data store.")
+# Get the geolocation of each event. Make a query for each geolocation against the index...
+
 searchIndex = 1
 for date in timeline:
   for desc in timeline[date]:

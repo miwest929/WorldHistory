@@ -21,3 +21,10 @@ Create mapping:
 `curl -XPUT 'http://192.168.99.100:9200/_mapping/events' -d '{"properties": {"date":{"type":"string"},"description":{"type":"string"},"lat":{"type":"string"},"lng":{"type":"string"}}}'`
 
 `curl -XGET -i 'http://192.168.99.100:9200/events/event/_search' -d '{"query": {"match_phrase": { "description": "maine"}}, "sort": { "date": { "order": "asc" }}}'`
+
+### Further Reading
+
+- https://www.elastic.co/guide/en/elasticsearch/guide/current/phrase-matching.html
+- https://www.elastic.co/guide/en/elasticsearch/guide/current/_sorting.html
+- https://www.elastic.co/guide/en/elasticsearch/reference/current/query-filter-context.html
+- https://www.elastic.co/guide/en/elasticsearch/reference/current/docs-index_.html
