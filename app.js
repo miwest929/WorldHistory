@@ -5,10 +5,9 @@ var express = require('express'),
     path = require('path'),
     yaml = require('js-yaml'),
     bodyParser = require('body-parser'),
-    pg = require('pg');
-
+    pg = require('pg'),
+    elasticsearch = require('elasticsearch');
 var app = module.exports = express();
-
 
 app.set('port', process.env.PORT || 3000);
 app.use(morgan('dev'));
@@ -26,16 +25,31 @@ else if (env === 'production') {
 }
 
 // JSON API
+var searchClient = new elasticsearch.Client({
+  host: '192.168.99.100:9200',
+  log: 'trace'
+});
 var dbUrl = "postgres://postgres:postgres@localhost/worldhistory";
-app.get('/api/timeline', function(request, response) {
-  var startTime = request.query.start;
-  var endTime = request.query.end;
 
-  pg.connect(dbUrl, function(err, client) {
-    client.query("SELECT * FROM timelines WHERE event_date BETWEEN '" + startTime + "' AND '" + endTime + "'", function(err, result) {
-      console.log(result.rows)
-      response.json(result.rows);
+app.get('/api/events', function(request, response) {
+  var query = request.query.query;
+
+  searchClient.search({
+    q: query,
+    sort: 'date',
+  }).then(function (body) {
+    var hits = body.hits.hits;
+    var results = body.hits.hits.map(function(result) {
+      return {
+        description: result["_source"]["description"],
+        date: result["_source"]["date"]
+      };
     });
+
+    response.json(results);
+  }, function (error) {
+    console.trace(error.message);
+    response.json({error: "Failed to complete your search query"})
   });
 });
 

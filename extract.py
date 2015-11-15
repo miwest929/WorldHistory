@@ -60,21 +60,22 @@ def parseYearWiki(year, timeline):
         timeline[key] = [(category_name + ": " + eventDesc)]
     else:
       evnts = [x for x in txt.split("\n") if x != '']
-      date = evnts[0]
-      evnts = evnts[1:]
+      if (len(evnts) > 0):
+        date = evnts[0]
+        evnts = evnts[1:]
 
-      key = getDateKey(date + ", " + year)
-      if (key != None):
-        timeline[key] = []
-        for e2 in evnts:
-          timeline[key].append( (category_name + ": " + e2) )
+        key = getDateKey(date + ", " + year)
+        if (key != None):
+          timeline[key] = []
+          for e2 in evnts:
+            timeline[key].append( (category_name + ": " + e2) )
 
 #=============================================================================
 timeline = dict()
 
 createTables(db)
 
-for y in range(1800, 1804):
+for y in range(1700, 1900):
   print("Parsing Wiki page for year " + str(y) + "...")
   parseYearWiki(str(y), timeline)
 

@@ -7,6 +7,7 @@
     "express": "~4.9.7",
     "q": "^1.1.2",
     "js-yaml": "*",
-    "body-parser": "*"
+    "body-parser": "*",
+    "elasticsearch": "9.0.0"
   }
 }

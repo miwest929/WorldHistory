@@ -9,16 +9,21 @@
   </head>
   <body>
     <div class="input-group query">
-      <input type="text" placeholder="Enter keywords for historical events" class="form-control"></input>
+      <input type="text" placeholder="Enter keywords for historical events" class="form-control" id ="events-query"></input>
       <span class="input-group-btn">
-        <button type="button" class="btn btn-primary">Go!</button>
+        <button type="button" class="btn btn-primary" id='search'>Go!</button>
       </span>
     </div>
     <div id="map"></div>
+    <div id='results'>
+      <ul class='list-group' id='results-list'></ul>
+    </div>
+
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.3/leaflet.js"></script>
     <script type="text/javascript" src="js/leaflet.awesome-markers.js"></script>
     <script type="text/javascript" src="js/app.js"></script>
+    <script type="text/javascript" src="js/events.js"></script>
   </body>
 </html>
