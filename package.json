@@ -1,0 +1,12 @@
+{
+  "name": "WorldHistory",
+  "version": "0.0.1",
+  "private": "true",
+  "dependencies": {
+    "pg", "*",
+    "express": "~4.9.7",
+    "q": "^1.1.2",
+    "js-yaml": "*",
+    "body-parser": "*"
+  }
+}
